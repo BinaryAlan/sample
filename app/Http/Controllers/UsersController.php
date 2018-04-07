@@ -52,14 +52,14 @@ class UsersController extends Controller
     }
     public function sendConfirmMailTo($user)
     {
-        $view    = 'emails.confirm';
-        $data    = compact('user');
-        $from    = 'liaochao2011@foxmail.com';
+        $view = 'emails.confirm';
+        $data = compact('user');
+        // $from    = 'liaochao2011@foxmail.com';
         $name    = 'liaochao';
         $to      = $user->email;
         $subject = "thank you for register,please confirm you mail box";
         Mail::send($view, $data, function ($message) use ($from, $to, $name, $subject) {
-            $message->from($from, $name)->to($to)->subject($subject);
+            $message->to($to)->subject($subject);
         });
 
     }
