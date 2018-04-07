@@ -28,6 +28,14 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function feed()
+    {
+        return $this->statuses()->orderBy('created_at', 'desc');
+    }
+    public function statuses()
+    {
+        return $this->hasMany(Status::class);
+    }
     public static function boot()
     {
         parent::boot();
